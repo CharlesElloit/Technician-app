@@ -1,3 +1,8 @@
+const mongoose = require("mongoose");
+
+// eslint-disable-next-line
+const Techian = mongoose.model("Techain");
+
 // This route is for creating a techian
 
 // eslint-disable-next-line
