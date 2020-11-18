@@ -20,7 +20,7 @@ be displayed for who ever make the request.
 */
 
 exports.notFoundErrorHandler = (req, res, next) => {
-  const error = new Error(`Not Found! ${req.originalUrl}`);
+  const error = new Error(`Not Found! auh ${req.originalUrl}`);
   res.status(404);
   error.status = 404;
   next(error);
@@ -34,11 +34,11 @@ error or any other previously un-handleed error and we can show good info about 
 
 // eslint-disable-next-line
 exports.developmentErrorsHandler = (error, req, res, next) => {
-  const statusCode = res.statusCode !== 200 ? 500 : res.statusCode;
+  const statusCode = res.statusCode !== 200 ? 400 : res.statusCode;
   res.status(statusCode);
   res.json({
     message: error.message,
-    stack: process.env.NODE_ENV === "production" ? ":)" : error.stack
+    stack: process.env.NODE_ENV === "development" && error.stack
   });
 };
 

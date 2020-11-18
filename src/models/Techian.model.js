@@ -1,31 +1,42 @@
-const { Schema, model } = require("mongoose");
+const mongoose = require("mongoose");
+const uniqueValidator = require("mongoose-unique-validator");
 
-const techianScheam = Schema({
+const technicianSchema = mongoose.Schema({
   name: { type: String, trim: true, required: true },
-  phoneNum: { type: String, required: true },
-  email: { type: String, required: true },
+  phoneNum: { type: String, trim: true, required: true },
+  email: { type: String, trim: true, required: true, unique: true },
   rate: Number,
   status: { type: String, required: true },
   rating: Number,
   profilePic: String,
   occupation: { type: String, trim: true, required: true },
+  slug: String,
+  createdAt: {
+    type: Date,
+    default: Date.now()
+  },
   location: {
     type: {
       type: String,
-      default: "Point"
+      default: "Point",
+      trim: true
     },
     coordinates: [
       {
         type: Number,
-        required: "You must supply coordinates"
+        required: true
       }
     ],
     address: { type: String, required: true }
   }
 });
 
-module.exports = model("Techian", techianScheam);
+technicianSchema.pre("save", function(next) {
+  if (!this.isModified("name")) return next();
+  this.slug = slug(this.name);
+  next();
+});
 
-/*  
-This is a model for a techian who 
-*/
+technicianSchema.plugin(uniqueValidator);
+
+module.exports = mongoose.model("Techian", technicianSchema);
