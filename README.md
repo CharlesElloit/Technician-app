@@ -2,8 +2,8 @@
 
 ## TODO
 
-    I personally encourage you to fork the repository instead of cloning or downloading it directly to you mechine,
-    So to get some feedbacks if your fork repository is not up to date with my repository and it also make it easier for you to make some pull request if you need to do so. and a lot more
+I personally encourage you to fork the repository instead of cloning or downloading it directly to you mechine,
+So to get some feedbacks if your fork repository is not up to date with my repository and it also make it easier for you to make some pull request if you need to do so. and a lot more
 
 - [Usage](#Useage)
 - [EndPoints](#Endpoints)
