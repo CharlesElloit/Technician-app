@@ -24,15 +24,14 @@ exports.signup = async (req, res) => {
 
   //Encrpting user password before saving to the database
   const solt = bcrypt.genSalt(10);
-  const password = "thisisafakepassword";
-  const hashed_password = await bcrypt.hash(password, solt);
+  const hashed_password = await bcrypt.hash(req.body.password, solt);
   if (!hashed_password)
     return res.status(500).json({ message: "Something went wrong! :)" });
 
   //Creating new user after it passes all the above validation base on the user data
   const user = new User({
-    name: "Charles Smith",
-    email: "charlesSmith@yahoo.com",
+    name: req.body.name,
+    email: req.body.email,
     password: hashed_password
   });
 
