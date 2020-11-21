@@ -35,10 +35,8 @@ app.use(
 mongoose.connect(process.env.DATABASE_CONNECTION_STRING, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useCreateIndex: true
 });
 
-mongoose.Promise = global.Promise;
 mongoose.connection.on("error", error => {
   if (error) {
     console.error(
