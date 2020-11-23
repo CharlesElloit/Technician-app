@@ -1,11 +1,11 @@
 const router = require("express").Router()
 
-const techianController = require("../controllers/techianController");
+const techianController = require("../controllers/technicianController");
 
 // This is a helper function which will catch errors
 const { catchErrorsHandler } = require("../handlers/errorHandler");
 
-// All of our application route should go here
+// All of our application route should go hered
 router.post(
   "/api/technicians",
   catchErrorsHandler(techianController.createTechnician)
