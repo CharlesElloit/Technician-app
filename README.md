@@ -1,4 +1,4 @@
-# Techian Application Backend API
+# Technician Application Backend API
 
 ## TODO
 
@@ -20,12 +20,13 @@ So to get some feedbacks if your fork repository is not up to date with my repos
 
 ### Note:
 
+[http://localhost:8080/api/users]() &nbsp; &nbsp; This will return all users in the database as a json format
+[http://localhost:8080/api/signup]() &nbsp; &nbsp; This will create a new user.
+
 [http://localhost:8080/api/technicians]() &nbsp; &nbsp; This will create a new techians in the database <br>
 [http://localhost:8080/api/technicians]() &nbsp; &nbsp; This will return all techians in the database as a json format <br>
 [http://localhost:8888/api/technician/5fb4f7d56d0f34e05602c976]() &nbsp; &nbsp; This will return a single techian data from
 the database for the specified id
-
-[http://localhost:8080/api/users]() &nbsp; &nbsp; This will return all users in the database as a json format
 
 # Useage
 

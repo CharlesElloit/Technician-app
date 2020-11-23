@@ -20,7 +20,7 @@ be displayed for who ever make the request.
 */
 
 exports.notFoundErrorHandler = (req, res, next) => {
-  const error = new Error(`Not Found! auh ${req.originalUrl}`);
+  const error = new Error(`Not Found! auh `);
   res.status(404);
   error.status = 404;
   next(error);

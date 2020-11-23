@@ -1,14 +1,24 @@
 {
   "name": "technician-backend",
   "version": "0.0.1",
-  "description": "Techian application backend using node and express",
+  "description": "Technician application backend using node and express",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "npm run watch",
     "watch": "nodemon ./server.js",
     "lint": "eslint ./src server.js",
-    "test": "jest"
+    "migrate": "npx sequelize-cli db:migrate",
+    "test:dev": "jest",
+    "test": "cross-env NODE_ENV=test jest --testTimeout=10000",
+    "pretest": "cross-env NODE_ENV=test npm run migrate:reset",
+    "migrate:reset": "npx sequelize-cli db:migrate:undo:all && npm run migrate"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   },
   "engines": {
     "node": "12.16.3"
@@ -20,6 +30,7 @@
   "author": "Charles Elloit",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.0",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "chalk": "^4.1.0",
@@ -34,14 +45,24 @@
     "mongoose": "^5.10.15",
     "mongoose-unique-validator": "^2.0.3",
     "multer": "^1.4.2",
+<<<<<<< HEAD
+=======
+    "nodemon": "^2.0.6",
+>>>>>>> c002f9bc89bd44134eeee4f54e8550f62f52b704
     "promisify": "0.0.3",
     "slug": "^4.0.2"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "jest": "^26.6.3",
     "nodemon": "^2.0.6",
+=======
+    "cross-env": "^7.0.2",
+>>>>>>> c002f9bc89bd44134eeee4f54e8550f62f52b704
     "eslint": "^7.13.0",
     "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1"
+    "eslint-plugin-import": "^2.22.1",
+    "jest": "^26.6.3",
+    "supertest": "^6.0.1"
   }
 }

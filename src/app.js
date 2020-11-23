@@ -10,7 +10,8 @@ const app = express();
 //requiring our enviroment variables
 require("dotenv").config();
 
-const routes = require("./routes/routers");
+const technicianRoutes = require("./routes/technicianRouters");
+const userRoutes = require("./routes/userRoutes")
 const errorHandlers = require("./handlers/errorHandler");
 
 //PORT variable
@@ -59,7 +60,8 @@ mongoose.connection.on("connected", () => {
 // });
 
 //This is all of our endpoints for the application
-app.use("/", routes);
+app.use("/", technicianRoutes);
+app.use("/", userRoutes)
 
 //Imports for all our model so we don't have to import it in every single
 //file where we want to use them

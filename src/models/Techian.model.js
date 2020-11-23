@@ -13,7 +13,7 @@ const technicianSchema = mongoose.Schema({
   slug: String,
   createdAt: {
     type: Date,
-    default: Date.now()
+    default: Date.now
   },
   location: {
     type: {
@@ -39,4 +39,4 @@ technicianSchema.pre("save", function(next) {
 
 technicianSchema.plugin(uniqueValidator);
 
-module.exports = mongoose.model("Techian", technicianSchema);
+module.exports = mongoose.model("Technician", technicianSchema);

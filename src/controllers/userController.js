@@ -23,8 +23,13 @@ exports.signup = async (req, res) => {
     });
 
   //Encrpting user password before saving to the database
+<<<<<<< HEAD
   const solt = bcrypt.genSalt(10);
   const hashed_password = await bcrypt.hash(req.body.password, solt);
+=======
+
+  const hashed_password = await bcrypt.hash(req.body.password, 12);
+>>>>>>> c002f9bc89bd44134eeee4f54e8550f62f52b704
   if (!hashed_password)
     return res.status(500).json({ message: "Something went wrong! :)" });
 
@@ -40,7 +45,7 @@ exports.signup = async (req, res) => {
   if (user)
     res
       .status(201)
-      .json({ userId: use.id, message: "User created Successfully!" });
+      .json({ userId: user.id, message: "User created Successfully!" });
 };
 
 //eslint-disable-next-line
@@ -49,7 +54,7 @@ exports.signin = async (req, res) => {
   const { error } = ValidateUserSignin(req.body);
   if (error)
     return res.status(400).json({
-      error: error.details[0].message
+      error: error
     });
 
   //2. find the user in the database with the given email
@@ -62,13 +67,14 @@ exports.signin = async (req, res) => {
   //2. if the user exist, compare the current entered password with the one
   // the database
   //3. Check if the password is valid, if it is send a token back
-  const valid = await bcrypt.compare(req.body.passowrd, user.passowrd);
+  const valid = await bcrypt.compare(req.body.password, user.password);
   if (!valid)
     return res.status(400).json({
       error: new Error("Incorrect password combo")
     });
 
-  const token = jwt({ userId: user.id }, process.env.SECRET_KEY);
+    //returning a token for login in user
+  const token = jwt.sign({ userId: user.id }, process.env.SECRET_KEY);
   res.status(200).json({
     token: token
   });
