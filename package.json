@@ -8,7 +8,17 @@
     "dev": "npm run watch",
     "watch": "nodemon ./server.js",
     "lint": "eslint ./src server.js",
-    "test": "jest"
+    "migrate": "npx sequelize-cli db:migrate",
+    "test:dev": "jest",
+    "test": "cross-env NODE_ENV=test jest --testTimeout=10000",
+    "pretest": "cross-env NODE_ENV=test npm run migrate:reset",
+    "migrate:reset": "npx sequelize-cli db:migrate:undo:all && npm run migrate"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   },
   "engines": {
     "node": "12.16.3"
@@ -20,6 +30,7 @@
   "author": "Charles Elloit",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.0",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "chalk": "^4.1.0",
@@ -39,9 +50,11 @@
     "slug": "^4.0.2"
   },
   "devDependencies": {
-    "jest": "^26.6.3",
+    "cross-env": "^7.0.2",
     "eslint": "^7.13.0",
     "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1"
+    "eslint-plugin-import": "^2.22.1",
+    "jest": "^26.6.3",
+    "supertest": "^6.0.1"
   }
 }

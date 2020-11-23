@@ -1,7 +1,5 @@
 const router = require("express").Router()
-
 const techianController = require("../controllers/technicianController");
-
 // This is a helper function which will catch errors
 const { catchErrorsHandler } = require("../handlers/errorHandler");
 
