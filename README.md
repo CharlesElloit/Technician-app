@@ -1,4 +1,4 @@
-# Techian Application Backend API
+# Technician Application Backend API
 
 ## TODO
 
