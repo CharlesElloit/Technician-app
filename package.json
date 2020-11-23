@@ -45,24 +45,16 @@
     "mongoose": "^5.10.15",
     "mongoose-unique-validator": "^2.0.3",
     "multer": "^1.4.2",
-<<<<<<< HEAD
-=======
-    "nodemon": "^2.0.6",
->>>>>>> c002f9bc89bd44134eeee4f54e8550f62f52b704
     "promisify": "0.0.3",
     "slug": "^4.0.2"
   },
   "devDependencies": {
-<<<<<<< HEAD
     "jest": "^26.6.3",
     "nodemon": "^2.0.6",
-=======
     "cross-env": "^7.0.2",
->>>>>>> c002f9bc89bd44134eeee4f54e8550f62f52b704
     "eslint": "^7.13.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
-    "jest": "^26.6.3",
     "supertest": "^6.0.1"
   }
 }
