@@ -43,3 +43,11 @@ exports.ValidateUserSignin = data => {
 
   return userSchema.validate(data);
 };
+
+exports.validateTechnician = data => {
+  const technicianSchema = Joi.object({
+    name: string()
+      .lowercase()
+      .max(30)
+  });
+};

@@ -23,13 +23,7 @@ exports.signup = async (req, res) => {
     });
 
   //Encrpting user password before saving to the database
-<<<<<<< HEAD
-  const solt = bcrypt.genSalt(10);
-  const hashed_password = await bcrypt.hash(req.body.password, solt);
-=======
-
   const hashed_password = await bcrypt.hash(req.body.password, 12);
->>>>>>> c002f9bc89bd44134eeee4f54e8550f62f52b704
   if (!hashed_password)
     return res.status(500).json({ message: "Something went wrong! :)" });
 
@@ -73,7 +67,7 @@ exports.signin = async (req, res) => {
       error: new Error("Incorrect password combo")
     });
 
-    //returning a token for login in user
+  //returning a token for login in user
   const token = jwt.sign({ userId: user.id }, process.env.SECRET_KEY);
   res.status(200).json({
     token: token
