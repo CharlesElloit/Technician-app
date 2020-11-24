@@ -1,6 +1,6 @@
 const http = require("http");
 const chalk = require("chalk");
-const app = require("./src/app");
+const app = require("./app");
 
 const server = http.createServer(app);
 

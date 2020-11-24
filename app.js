@@ -4,12 +4,14 @@ const helmet = require("helmet");
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+// const promisify = require("es6-promisify");
 const app = express();
 
 //requiring our enviroment variables
 require("dotenv").config();
 
-const routes = require("./src/routes/routers");
+const technicianRoutes = require("./src/routes/technicianRouters");
+const userRoutes = require("./src/routes/userRoutes")
 const errorHandlers = require("./src/handlers/errorHandler");
 
 //PORT variable
@@ -31,12 +33,14 @@ app.use(
   and enabling Promises to let us use async and await
   and on error we gonna display custom error for our self.
 */
-
 mongoose.connect(process.env.DATABASE_CONNECTION_STRING, {
   useNewUrlParser: true,
+  useFindAndModify: false,
   useUnifiedTopology: true,
+  useCreateIndex: true
 });
 
+mongoose.Promise = global.Promise;
 mongoose.connection.on("error", error => {
   if (error) {
     console.error(
@@ -51,8 +55,20 @@ mongoose.connection.on("connected", () => {
   console.log(chalk.bold.green("\n" + "Connected to database Successfully!"));
 });
 
+//This promisify some callback based apis
+// app.use((req, res, next) => {
+//   req.login = promisify(req.login, req);
+//   next();
+// });
+
 //This is all of our endpoints for the application
-app.use("/", routes);
+app.use("/", technicianRoutes);
+app.use("/", userRoutes)
+
+//Imports for all our model so we don't have to import it in every single
+//file where we want to use them
+require("./src/models/Techian.model");
+require("./src/models/User.model");
 
 /* 
   TODO::
@@ -71,7 +87,7 @@ if (app.get("env") === "development") {
   app.use(errorHandlers.developmentErrorsHandler);
 }
 
-// lets handle the production error
+// lets handle the production error  in w
 app.use(errorHandlers.productionErrorsHandler);
 
 module.exports = app;
