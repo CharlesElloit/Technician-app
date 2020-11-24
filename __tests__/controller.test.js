@@ -54,3 +54,25 @@ describe('Sample Test', () => {
 //     expect(response.body.length).toBe(2);
 //   });
 // });
+
+
+//updating user test
+// describe("PATCH /students/1", () => {
+//   test("It responds with an updated student", async () => {
+//     const newStudent = await request(app)
+//       .post("/students")
+//       .send({
+//         name: "Another one"
+//       });
+//     const updatedStudent = await request(app)
+//       .patch(`/students/${newStudent.body.id}`)
+//       .send({ name: "updated" });
+//     expect(updatedStudent.body.name).toBe("updated");
+//     expect(updatedStudent.body).toHaveProperty("id");
+//     expect(updatedStudent.statusCode).toBe(200);
+
+//     // make sure we have 3 students
+//     const response = await request(app).get("/students");
+//     expect(response.body.length).toBe(3);
+//   });
+// });
