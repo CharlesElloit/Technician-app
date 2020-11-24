@@ -1,25 +1,28 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/User.model");
 const jwt = require("jsonwebtoken");
-const {
-  ValidateUserSignup,
-  ValidateUserSignin
-} = require("../handlers/validation");
+const validation = require("../handlers/validation");
 
 //eslint-disable-next-line
 exports.signup = async (req, res) => {
   //Validating user inputs / data
-  const { error } = ValidateUserSignup(req.body);
+  const { error } = validation.ValidateUserSignup(req.body);
   if (error)
     return res.status(400).json({
       error: error.details[0].message
     });
 
+  //checks if the passwords are the same
+  if(req.body.password !== req.body.confirmPassword)
+    return res.status(400).json({
+      error: 'Password must match'
+    })
+
   //check if the user exist
   const isUserExist = await User.findOne({ email: req.body.email });
   if (isUserExist)
     return res.status(400).json({
-      error: new Error(`User with ${req.body.email} already exist!`)
+      error: `User with ${req.body.email} already exist!`
     });
 
   //Encrpting user password before saving to the database
@@ -45,26 +48,26 @@ exports.signup = async (req, res) => {
 //eslint-disable-next-line
 exports.signin = async (req, res) => {
   //1: Validating user inputs / data
-  const { error } = ValidateUserSignin(req.body);
+  const { error } = validation.ValidateUserSignin(req.body);
   if (error)
     return res.status(400).json({
-      error: error
+      error: error.details[0].message
     });
 
   //2. find the user in the database with the given email
   const user = await User.findOne({ email: req.body.email });
   if (!user)
     return res.status(400).json({
-      errror: new Error(`User with ${req.body.email} doesn't exist!`)
+      errror: `User with ${req.body.email} doesn't exist!`
     });
 
   //2. if the user exist, compare the current entered password with the one
   // the database
-  //3. Check if the password is valid, if it is send a token back
+  //Check if the password is valid, if it is send a token back
   const valid = await bcrypt.compare(req.body.password, user.password);
   if (!valid)
     return res.status(400).json({
-      error: new Error("Incorrect password combo")
+      error: "Incorrect password combo"
     });
 
   //returning a token for login in user
@@ -79,12 +82,45 @@ exports.signout = (req, res) => {
   res.send("Your'r log out");
 };
 
+
+//gets all users from the database
 exports.getAllUsers = async (req, res) => {
   const users = await User.find();
   if (!users)
     return res.status(404).json({
-      error: new Error("users not found!")
+      error: "users not found!"
     });
 
   res.status(200).json(users);
 };
+
+//gets a single user from the database
+exports.getSingleUser = async (req, res) => {
+  const user = await User.findById({_id: req.params.id})
+  if(!user)
+   return res.status(400).json({
+     error: "User not found"
+   })
+  
+   res.status(200).json(user)
+}
+
+
+//updating user info
+exports.updateUser = async (req, res) => {
+  //1: Validating user inputs / data
+  const { error } = validation.validateUserUpdate(req.body);
+  if (error)
+    return res.status(400).json({
+      error: error.details[0].message
+    });
+
+    //finding and updating the user
+  const user = await User.findOneAndUpdate({_id: req.params.id}, req.body, {new: true})
+  if(!user)
+    return res.status(400).json({
+      error: "User not found"
+    })
+
+  res.status(200).json(user)
+}
