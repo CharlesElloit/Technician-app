@@ -33,13 +33,14 @@ make some pull request if you need to do so. and a lot more
 the database for the specified id
 
 # Useage
-```
- 1: First make sure your runing node version 12.13.x or greater
- 2: Change directory to the project folder, and if you change the folder name make sure your're in the
-    right one.
- 3: Run ( npm install or npm i ) to install the dependencies used in this project but make sure you run this 
-    command on the root of the project
- 4: Now to view the project run ( npm run dev ) to start the development server on port -> 8080
 
+1: First make sure your runing node version 12.13.x or greater
+2: Change directory to the project folder, and if you change the folder name make sure your're in the
+right one.
+3: Run ( npm install or npm i ) to install the dependencies used in this project but make sure you run this
+command on the root of the project
+4: Now to view the project run ( npm run dev ) to start the development server on port -> 8080
+
+```
 Happy hacking :)
 ```
