@@ -21,16 +21,11 @@ make some pull request if you need to do so. and a lot more
 
 `http://localhost:8080/api/signup` &nbsp; &nbsp; This will create a new user.<br>
 `http://localhost:8080/api/signin` &nbsp; &nbsp; This will sign in users in to their respective accounts <br>
-`http://localhost:8080/api/users` &nbsp; &nbsp; This will return all users in the database as a json format <br>
-`http://localhost:8080/api/user/5fbcc9670bc507679c33d0c6` &nbsp; &nbsp; This returns a single user information <br>
-`http://localhost:8080/api/users/5fbcc9670bc507679c33d0c6` &nbsp; &nbsp; This Updates user information <br>
 
 ### The below routes are not working yet
 
 `http://localhost:8080/api/technicians` &nbsp; &nbsp; This will create a new techians in the database <br>
 `http://localhost:8080/api/technicians` &nbsp; &nbsp; This will return all techians in the database as a json format <br>
-`http://localhost:8888/api/technician/5fb4f7d56d0f34e05602c976` &nbsp; &nbsp; This will return a single techian data from
-the database for the specified id
 
 # Useage
 

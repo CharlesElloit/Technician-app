@@ -56,7 +56,7 @@ exports.getAllTechicians = async (req, res) => {
 exports.getTechnician = async (req, res) => {
   const technician = await Technician.findById({ _id: req.params.id });
   if (!technician)
-    return status(400).json({
+    return res.status(400).json({
       error: new Error("There is no user with that id!")
     });
 
@@ -64,3 +64,6 @@ exports.getTechnician = async (req, res) => {
 };
 
 //this is test for the master branch to see if tahe dev is upto date
+exports.home = (req, res) => {
+  res.send('Welcome to Technician Application')
+}
