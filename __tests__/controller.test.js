@@ -1,12 +1,22 @@
 
-// const request = require('supertest')
-// const app = require('../app')
+const request = require('supertest')
+const app = require('../app')
 
 // This is a test example to make sure
 // everything works fine
 describe('Sample Test', () => {
   it('should test that true === true', () => {
     expect(true).toBe(true)
+  })
+})
+
+describe("Get /users", () => {
+  test("Should return all the users in the database", () => {
+    return request(app).get("/users")
+      .then(response => {
+        expect(response.statusCode).toBe(200)
+        expect(response.body.length).toBe(4);
+      })
   })
 })
 
@@ -35,7 +45,7 @@ describe('Sample Test', () => {
 // describe("Creating a POST request to /signup", () => {
 //   test("It should responds with the newly created user id and message", async () => {
 //     const user = await request(app)
-//       .post("/api/signup")
+//       .post("/signup")
 //       .send({
 //         name: "New Test User",
 //         email: "newTestUser@yahoo.com",

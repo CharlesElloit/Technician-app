@@ -5,6 +5,7 @@ const techianController = require("../controllers/technicianController");
 const { catchErrorsHandler } = require("../handlers/errorHandler");
 
 // All of our application route should go hered
+router.get("/", techianController.home)
 router.post("/api/technicians", catchErrorsHandler(techianController.createTechnician));
 router.get("/api/technicians",  catchErrorsHandler(techianController.getAllTechicians));
 router.get("/api/technician/:id", catchErrorsHandler(techianController.getTechnician));

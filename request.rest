@@ -1,0 +1,46 @@
+@hostname = localhost
+@port = 8080
+
+###
+
+GET http://{{hostname}}:{{port}}/
+
+###
+
+GET http://{{hostname}}:{{port}}/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmM0YjQzY2U5Nzc2YjAyYzQ4MDc0MjUiLCJpYXQiOjE2MDc0MTQ2Mjl9.hpr_qgOyQtkozx6CUXWqxmwIW0s0JHhi891USPMY7fo
+
+###
+
+POST http://{{hostname}}:{{port}}/signup
+content-type: application/json
+
+{
+  "name": "Zeph 180",
+  "email": "zeph180@yahoo.com",
+  "password": "zeph12345",
+  "confirmPassword": "zeph12345"
+}
+
+###
+
+post http://{{hostname}}:{{port}}/signin
+Content-Type: application/json
+
+{
+  "email": "zeph180@yahoo.com",
+  "password": "zeph12345"
+}
+
+###
+
+PUT http://{{hostname}}:{{port}}/users/5fcf77def0b8b33a14af3e93
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmNmNzdkZWYwYjhiMzNhMTRhZjNlOTMiLCJpYXQiOjE2MDc0MzIxOTh9.qQqjLBCdVAj6y7mgrLJmGovlXO2qBtKrIYaYikYBsFc
+
+{
+   "name": "Zeph 190",
+   "email": "zeph190@gmail.com"
+}
+
+

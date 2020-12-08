@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const slug = require("slug")
 const uniqueValidator = require("mongoose-unique-validator");
 
 const technicianSchema = mongoose.Schema({
