@@ -16,10 +16,10 @@ POST http://{{hostname}}:{{port}}/signup
 content-type: application/json
 
 {
-  "name": "Zeph 180",
-  "email": "zeph180@yahoo.com",
-  "password": "zeph12345",
-  "confirmPassword": "zeph12345"
+  "name": "Lucas Kevin",
+  "email": "lucasKevin@yahoo.com",
+  "password": "lucas12345",
+  "confirmPassword": "lucas12345"
 }
 
 ###
@@ -28,8 +28,8 @@ post http://{{hostname}}:{{port}}/signin
 Content-Type: application/json
 
 {
-  "email": "zeph180@yahoo.com",
-  "password": "zeph12345"
+  "email": "lucasKevin@yahoo.com",
+  "password": "lucas12345"
 }
 
 ###
@@ -39,8 +39,30 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmNmNzdkZWYwYjhiMzNhMTRhZjNlOTMiLCJpYXQiOjE2MDc0MzIxOTh9.qQqjLBCdVAj6y7mgrLJmGovlXO2qBtKrIYaYikYBsFc
 
 {
-   "name": "Zeph 190",
+   "name": "Zeph Friend",
    "email": "zeph190@gmail.com"
 }
 
+###
+
+POST http://{{hostname}}:{{port}}/credentials
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmQxMmNlYmFiMDcyMzEwYjA1MGZlZDEiLCJpYXQiOjE2MDc1NDQwNzl9.2YvhtE845D35HyyLRNGUswK3ZWkb0XofuYa-l18f5Z4
+
+{
+  "name": "Lucas Kevin",
+  "profilePic": "https://imageskjskdjflkajsdklfjalksdjflkajsdfkl",
+  "contact": {
+    "phone": "1234567890",
+    "mobile": "1234567890"
+  },
+  "location": {
+    "Content-Type: "
+    "address": "Nitinda"
+  }
+}
+
+###
+
+GET http://{{hostname}}:{{port}}/localhost:8080/credentials/5fd12cebab072310b050fed1
 

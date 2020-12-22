@@ -6,8 +6,6 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const app = express();
 
-require("./src/handlers/passport-config")
-
 //requiring our enviroment variables
 require("dotenv").config();
 
@@ -28,7 +26,6 @@ app.use(
     origin: `http://localhost:${PORT}`
   })
 );
-
 /* 
   Connection to our Database and handling any bad connections 
   and enabling Promises to let us use async and await

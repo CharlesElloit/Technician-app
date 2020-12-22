@@ -6,7 +6,7 @@ const auth = (req, res, next) => {
     token = req.headers.authorization.split("Bearer ")[1]
 
   else return res.status(401).json({
-     error: "Unauthorized access"
+     error: "Unauthorized Access"
   })
 
   //verify the token
@@ -16,8 +16,12 @@ const auth = (req, res, next) => {
       error: "Oops You'r Unauthorized to access this resources. Sorry!!"
     })
 
-  req.headers.userId = verifiedToken.userId
+  //setting user information in the headers 
+  req.headers.userId = verifiedToken.userId,
+  req.headers.name = verifiedToken.name,
+  req.headers.email = verifiedToken.email
   
+  //pass the executation to the next middleware in the chain
   next()
 }
 

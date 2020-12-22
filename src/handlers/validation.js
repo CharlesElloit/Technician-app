@@ -33,11 +33,10 @@ exports.ValidateUserSignin = data => {
 //validating when the user is updating his/her account info
 exports.validateUserUpdate = data => {
   const userSchema = Joi.object({
-    name: Joi.string().min(3).max(30).trim(),
+    username: Joi.string().min(3).max(30).trim(),
     email: Joi.string().trim().lowercase().max(255).email(),
-    phoneNumber: Joi.string().min(10).max(13).trim(),
-    profilePic: Joi.string().trim(),
-    address: Joi.string().max(100).trim()
+    password: Joi.string().trim().max(30).min(6).required().pattern(new RegExp("^[a-zA-Z0-9]{6,30}$")),
+    confirmPassword: Joi.string().trim().max(30).min(6).required().pattern(new RegExp("^[a-zA-Z0-9]{6,30}$"))
   })
 
   return userSchema.validate(data)

@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const md5 = require("md5")
-const passportLocalMongoose = require("passport-local-mongoose")
 const uniqueValidator = require("mongoose-unique-validator");
 
 const shared = {
@@ -10,9 +9,8 @@ const shared = {
 };
 
 const userSchema = mongoose.Schema({
-  name: { ...shared },
+  name: { ...shared,lowercase: true },
   email: { ...shared, unique: true, lowercase: true },
-  isTechnician: { type: Boolean, default: false },
   password: { ...shared },
   createdAt: { type: Date, default: Date.now },
   resetPasswordToken: String,
@@ -25,6 +23,5 @@ userSchema.virtual("gravatar").get(function() {
 })
 
 userSchema.plugin(uniqueValidator);
-userSchema.plugin(passportLocalMongoose)
 
 module.exports = mongoose.model("User", userSchema);

@@ -23,14 +23,15 @@ const signin = async (req, res) => {
   const valid = await bcrypt.compare(req.body.password, user.password);
   if (!valid)
     return res.status(400).json({
-      error: "Incorrect password combo"
+      error: "Incorrect password"
     });
 
+    //Adding some relevant data to the token
+  const payload = {userId: user._id, email: user.email, name: user.name}
+
   //returning a token for login user
-  const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY);
-  res.status(200).json({
-    token: token
-  });
+  const token = jwt.sign(payload, process.env.SECRET_KEY);
+  res.status(200).json({ token });
 
   req.headers.authorization = token
 
