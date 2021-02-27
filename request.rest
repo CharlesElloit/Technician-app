@@ -16,10 +16,10 @@ POST http://{{hostname}}:{{port}}/signup
 content-type: application/json
 
 {
-  "name": "Lucas Kevin",
-  "email": "lucasKevin@yahoo.com",
-  "password": "lucas12345",
-  "confirmPassword": "lucas12345"
+  "name": "user2",
+  "email": "user2@yahoo.com",
+  "password": "user2@12345",
+  "confirmPassword": "user2@12345"
 }
 
 ###
@@ -28,41 +28,72 @@ post http://{{hostname}}:{{port}}/signin
 Content-Type: application/json
 
 {
-  "email": "lucasKevin@yahoo.com",
-  "password": "lucas12345"
+  "email": "user2@gmail.com",
+  "password": "user2@12345"
 }
 
 ###
 
-PUT http://{{hostname}}:{{port}}/users/5fcf77def0b8b33a14af3e93
+PUT http://{{hostname}}:{{port}}/user
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmNmNzdkZWYwYjhiMzNhMTRhZjNlOTMiLCJpYXQiOjE2MDc0MzIxOTh9.qQqjLBCdVAj6y7mgrLJmGovlXO2qBtKrIYaYikYBsFc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmZhM2EzNzJiNDZlMjFiZjc3ZDI4YWUiLCJlbWFpbCI6InVzZXIyQHlhaG9vLmNvbSIsIm5hbWUiOiJ1c2VyMiIsImlhdCI6MTYxMDI5NTE0Nn0.FHLFePthrRuEPjkG-V1PBcX1nspwtU3rh93hp9W0uIk
 
 {
-   "name": "Zeph Friend",
-   "email": "zeph190@gmail.com"
+  "email": "user2@gmail.com"
 }
 
 ###
 
 POST http://{{hostname}}:{{port}}/credentials
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmQxMmNlYmFiMDcyMzEwYjA1MGZlZDEiLCJpYXQiOjE2MDc1NDQwNzl9.2YvhtE845D35HyyLRNGUswK3ZWkb0XofuYa-l18f5Z4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmZhM2EzNzJiNDZlMjFiZjc3ZDI4YWUiLCJlbWFpbCI6InVzZXIyQHlhaG9vLmNvbSIsIm5hbWUiOiJ1c2VyMiIsImlhdCI6MTYxMDIzNDUyM30.dodpgdyW_es_PuR7iNaK6Cr7-0WYV-Ym7DXnwpR9yyw
 
 {
-  "name": "Lucas Kevin",
-  "profilePic": "https://imageskjskdjflkajsdklfjalksdjflkajsdfkl",
+  "fname": "user2",
+  "lname": "user2",
+  "profilePic": "https://images-user2@gavatar.com",
   "contact": {
     "phone": "1234567890",
     "mobile": "1234567890"
   },
   "location": {
-    "Content-Type: "
-    "address": "Nitinda"
+    "coordinates":[-73.856077, 40.848447],
+    "address": "kwatule Road"
   }
 }
 
+
+GET http://{{hostname}}:{{port}}/credential
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmZhM2EzNzJiNDZlMjFiZjc3ZDI4YWUiLCJlbWFpbCI6InVzZXIyQGdtYWlsLmNvbSIsIm5hbWUiOiJ1c2VyMiIsImlhdCI6MTYxMDI5NTg4Nn0.bCt1cpyo3DKZUnhik6lafThR8iqqw0q_p1_ndHH8D9M
+
+
+
 ###
+PUT http://{{hostname}}:{{port}}/credential
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmY0ODg1N2NjMTIzMTczMTdiYWJlYTciLCJlbWFpbCI6InVzZXJAeWFob28uY29tIiwibmFtZSI6InVzZXIiLCJpYXQiOjE2MDk4NjI2Mzl9.Xs0EXOffGPqU-r1B6gS46g2Wh0g_xKt0nFmMVcMK8cE
 
-GET http://{{hostname}}:{{port}}/localhost:8080/credentials/5fd12cebab072310b050fed1
+{
+  "fname": "user2",
+  "lname": "User2",
+  "contact": {
+    "phone": "+256771687717",
+    "mobile":"+256238409388"
+  }
+}
 
+# Technician routes
+
+###
+POST http://{{hostname}}:{{port}}/technicians
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmZhM2EzNzJiNDZlMjFiZjc3ZDI4YWUiLCJlbWFpbCI6InVzZXIyQHlhaG9vLmNvbSIsIm5hbWUiOiJ1c2VyMiIsImlhdCI6MTYxMDIzNDUyM30.dodpgdyW_es_PuR7iNaK6Cr7-0WYV-Ym7DXnwpR9yyw
+
+{
+  "rate": 5,
+  "rating": 5.0,
+  "status": "Avaible",
+  "occupation": "Electrician",
+  "experience": "20 years"
+}

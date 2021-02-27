@@ -1,22 +1,36 @@
 const mongoose = require("mongoose");
 const uniqueValidator = require("mongoose-unique-validator");
 
+const name = { type: String, required: true, trim: true, lowercase: true };
+
 const CredentialSchema = mongoose.Schema({
-  name: {type: String, required: true, trim: true, lowercase: true},
-  profilePic: {type: String, required: true},
-  isTechnician: {type: Boolean, default: false},
-  userId: {
-    type: mongoose.Schema.Types.ObjectId, ref: "User"
+  fname: { ...name },
+  lname: { ...name },
+  profilePic: { type: String, required: true },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  },
+  technician: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Technician"
   },
   contact: {
-    phone: {type: String, required: true}, 
-    mobile: {type: String, required: true}
+    phone: { type: String, required: true },
+    mobile: { type: String, required: true }
   },
   location: {
-    coordinates: [
-      {type: Number, default: 'Point'}
-    ],
-    address: {type: String, required: true}
+    type: {
+      type: String,
+      default: "Point",
+      required: true
+    },
+    coordinates: {
+      type: [Number],
+      required: true
+    },
+
+    address: { type: String, required: true, trim: true, lowercase: true }
   }
 });
 

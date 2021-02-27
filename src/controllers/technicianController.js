@@ -1,44 +1,36 @@
-const bcrypt = require("bcrypt");
-const Technician = require("../models/Techian.model");
-
-// This route is for creating a techian
+const db = require("../models/index");
 
 // eslint-disable-next-line
 exports.createTechnician = async (req, res) => {
-  //TODO:
-  //check if the technician isn't already created
+  //validation
+  //create the technician information.
 
-  const technician = new Technician(req.body);
-  const success = await technician.save();
-  if (!success)
-    return res
-      .status(500)
-      .json({ message: "Something went wrong try again!!!!" });
+  const technicianData = new db.Technician({
+    rate: req.body.rate,
+    rating: req.body.rating,
+    status: req.body.status,
+    occupation: req.body.occupation,
+    experience: req.body.experience,
+    userId: req.headers.userId
+  });
+
+  const technician = await db.Technician.create(technicianData);
+
+  if (!technician)
+    return res.status(500).json({
+      error: "something went wrong"
+    });
+
+  const savedTechnicianData = await technician.save();
+  if (!savedTechnicianData)
+    return res.status(500).json({
+      error: "Oops your credentials is not saved please try again!"
+    });
+
+  //flip the isTechnician boolen from false to true
+
   return res.status(201).json({ message: "Techian created Successfully!" });
 };
-
-// This route should login techian
-// eslint-disable-next-line
-exports.loginTechnician = async (req, res) => {
-  const technician = await Technician.findOne({ email: req.body.email });
-  if (!technician)
-    return res
-      .status(401)
-      .json({ message: "Please provide correct email and password combo!" });
-  const password_hash = bcrypt.hash(req.body.password, 12);
-
-  const valid = bcrypt(password_hash, technician.password);
-  if (!valid)
-    res.status(500).json({ message: "Something went wrong try again!!!" });
-
-  res.status(200).json({
-    userId: technician.id,
-    token: "fakeToke"
-  });
-};
-
-// This route get all of the techian in our database and send it as
-// a json format
 
 // eslint-disable-next-line
 exports.getAllTechicians = async (req, res) => {
@@ -51,10 +43,11 @@ exports.getAllTechicians = async (req, res) => {
 };
 
 //This route gets a single techian information
-
 // eslint-disable-next-line
 exports.getTechnician = async (req, res) => {
-  const technician = await Technician.findById({ _id: req.params.id });
+  const technician = await Technician.findById({ _id: req.params.id }).populate(
+    ""
+  );
   if (!technician)
     return res.status(400).json({
       error: new Error("There is no user with that id!")
@@ -65,5 +58,5 @@ exports.getTechnician = async (req, res) => {
 
 //this is test for the master branch to see if tahe dev is upto date
 exports.home = (req, res) => {
-  res.send('Welcome to Technician Application')
-}
+  res.send("Welcome to Technician Application");
+};

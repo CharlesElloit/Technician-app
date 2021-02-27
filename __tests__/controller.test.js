@@ -1,24 +1,32 @@
-
-const request = require('supertest')
-const app = require('../app')
+// const request = require("supertest");
+// const app = require("../app");
 
 // This is a test example to make sure
 // everything works fine
-describe('Sample Test', () => {
-  it('should test that true === true', () => {
-    expect(true).toBe(true)
-  })
-})
+describe("Sample Test", () => {
+  it("should test that true === true", () => {
+    expect(true).toBe(true);
+  });
+});
 
-describe("Get /users", () => {
-  test("Should return all the users in the database", () => {
-    return request(app).get("/users")
-      .then(response => {
-        expect(response.statusCode).toBe(200)
-        expect(response.body.length).toBe(4);
-      })
-  })
-})
+function add(x, y) {
+  return x + y;
+}
+
+test("should return 3", () => {
+  expect(add(1, 2)).toBe(3);
+});
+
+// describe("Get /users", () => {
+//   test("Should return all the users in the database", () => {
+//     return request(app)
+//       .get("/users")
+//       .then(response => {
+//         expect(response.statusCode).toBe(200);
+//         expect(response.body.length).toBe(4);
+//       });
+//   });
+// });
 
 // describe('GET /', () => {
 //   // token not being sent - should respond with a 401
@@ -40,7 +48,6 @@ describe("Get /users", () => {
 //       });
 //   });
 // });
-
 
 // describe("Creating a POST request to /signup", () => {
 //   test("It should responds with the newly created user id and message", async () => {
@@ -64,7 +71,6 @@ describe("Get /users", () => {
 //     expect(response.body.length).toBe(2);
 //   });
 // });
-
 
 //updating user test
 // describe("PATCH /students/1", () => {

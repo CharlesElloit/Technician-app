@@ -6,6 +6,7 @@
 User {
   name: String,
   email: String,
+  isTechnician: Boolen,
   createdAt: Date,
   password: String,
   resetPasswordToken: String,
@@ -17,19 +18,21 @@ User {
 
 ```
 Credentails: {
+  fname: String,
+  lname: String,
   profilePic: String,
-  isTechnician: Boolen,
   contact: {
     phone: String,
     Mobile: String
   },
   location: {
     coordinates: [
-      { type: Number }
+      { type: Number, default: Point }
     ],
     address: { type: String }
   },
-  userId: objectId, ref: User
+  userId: objectId, ref: User,
+  technicianId: mongoose.Schema.objectId, ref: Technician
 }
 ```
 
@@ -42,6 +45,6 @@ Technician: {
   status: String,
   createdAt: Date,
   occupation: String,
-  credentailsId: objectId, ref: Credentails,
+  userId: objectId, ref: User,
 }
 ```

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const slug = require("slug")
+const slug = require("slug");
 const uniqueValidator = require("mongoose-unique-validator");
 
 const technicianSchema = mongoose.Schema({
@@ -7,11 +7,12 @@ const technicianSchema = mongoose.Schema({
   status: { type: String, required: true },
   rating: Number,
   occupation: { type: String, trim: true, required: true },
+  experience: { type: String, trim: true, required: true },
   createdAt: {
     type: Date,
     default: Date.now
   },
-  userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
 });
 
 technicianSchema.pre("save", function(next) {

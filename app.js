@@ -10,7 +10,7 @@ const app = express();
 require("dotenv").config();
 
 const technicianRoutes = require("./src/routes/technicianRouters");
-const userRoutes = require("./src/routes/userRoutes")
+const userRoutes = require("./src/routes/userRoutes");
 const errorHandlers = require("./src/handlers/errorHandler");
 
 //PORT variable
@@ -26,10 +26,9 @@ app.use(
     origin: `http://localhost:${PORT}`
   })
 );
+
 /* 
-  Connection to our Database and handling any bad connections 
-  and enabling Promises to let us use async and await
-  and on error we gonna display custom error for our self.
+  Connection to our Database and handling any bad connections errors.
 */
 mongoose.connect(process.env.DATABASE_CONNECTION_STRING, {
   useNewUrlParser: true,
@@ -41,11 +40,14 @@ mongoose.connect(process.env.DATABASE_CONNECTION_STRING, {
 mongoose.Promise = global.Promise;
 mongoose.connection.on("error", error => {
   if (error) {
-    console.error(
-      chalk.bold.red(`Samething went wrong with database connection
-  ${chalk.yellow("Please make sure your're connected to the internet :)")}
-  ${error.message}`)
+    console.log(
+      chalk.bold.red(
+        `Oops samething went wrong with database connection\n${chalk.yellow(
+          "Please make sure your're connected to the internet :)"
+        )}`
+      )
     );
+    console.error(error.message);
   }
 });
 
@@ -55,12 +57,12 @@ mongoose.connection.on("connected", () => {
 
 //This is all of our endpoints for the application
 app.use("/", technicianRoutes);
-app.use("/", userRoutes)
+app.use("/", userRoutes);
 
 /* 
   TODO::
     make sure all the error handlers are at the end of the file 
-    becuz we wanna all the code to run so if there is any error we can catch at the end.
+    becuz we want all the code to run first so if there is any error we can catch at the end.
 */
 
 // If any of our routes didn't work, then we ganna 404 them and

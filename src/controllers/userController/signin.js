@@ -1,7 +1,7 @@
-const bcrypt = require('bcrypt')
-const jwt = require("jsonwebtoken")
-const db = require("../../models/index")
-const { ValidateUserSignin } = require("../../handlers/validation")
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const db = require("../../models/index");
+const { ValidateUserSignin } = require("../../handlers/validation");
 
 const signin = async (req, res) => {
   //1: Validating user inputs / data
@@ -26,15 +26,14 @@ const signin = async (req, res) => {
       error: "Incorrect password"
     });
 
-    //Adding some relevant data to the token
-  const payload = {userId: user._id, email: user.email, name: user.name}
+  //Adding some relevant data to be encoded in the token
+  const payload = { userId: user._id, email: user.email, name: user.name };
 
   //returning a token for login user
   const token = jwt.sign(payload, process.env.SECRET_KEY);
   res.status(200).json({ token });
 
-  req.headers.authorization = token
-
+  req.headers.authorization = token;
 };
 
-module.exports = signin
+module.exports = signin;
